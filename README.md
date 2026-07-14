@@ -30,15 +30,15 @@ In other words, the method is a topology optimisation loop in which the design v
 
 ### 2.1 Periodic homogenisation
 
-In [definition_3d.py](definition_3d.py), the code builds a periodic 3D unit-cell setting and solves representative cell problems under different macroscopic strain states. The resulting homogenised stiffness tensor is then used as the basis for the objective evaluation.
+In [definition_3d_UTI.py](definition_3d_UTI.py), the code builds a periodic 3D unit-cell setting and solves representative cell problems under different macroscopic strain states. The resulting homogenised stiffness tensor is then used as the basis for the objective evaluation.
 
 ### 2.2 Level-set based design update
 
-In [main_3d.py](main_3d.py), the optimisation loop uses the sensitivities obtained from the cost function, updates the level-set field, and performs a line-search / step-size control strategy to improve stability.
+In [main_3d_UTI.py](main_3d_UTI.py), the optimisation loop uses the sensitivities obtained from the cost function, updates the level-set field, and performs a line-search / step-size control strategy to improve stability.
 
 ### 2.3 Configuration and numerical parameters
 
-In [init_3d.py](init_3d.py), the user can tune:
+In [init_3d_UTI.py](init_3d_UTI.py), the user can tune:
 
 - material properties such as Young's modulus and Poisson ratio;
 - optimisation and line-search settings;
@@ -55,7 +55,7 @@ The objective is constructed from representative stiffness components in a tetra
 - the UTI-related invariants $h_b$, $h_a$, $H$;
 - a transverse-isotropy penalty term based on the residual $R_{TI}$.
 
-The current objective is implemented in [definition_3d.py](definition_3d.py) through functions such as:
+The current objective is implemented in [definition_3d_UTI.py](definition_3d_UTI.py) through functions such as:
 
 - `uti_ratio_term`
 - `grad_uti_ratio_term`
@@ -80,18 +80,18 @@ and $J_{ti}$ is a penalty term enforcing the transverse-isotropy relation.
 
 ## 4. Important note for other cases
 
-This framework is currently configured for the UTI objective. If you want to optimise for a different material class or a different target property, the main optimisation machinery does not need to be rewritten. Instead, you should replace the cost function and its gradient in [definition_3d.py](definition_3d.py), especially the functions listed above.
+This framework is currently configured for the UTI objective. If you want to optimise for a different material class or a different target property, the main optimisation machinery does not need to be rewritten. Instead, you should replace the cost function and its gradient in [definition_3d_UTI.py](definition_3d_UTI.py), especially the functions listed above.
 
 In practice, for a new case you would:
 
 1. define the new scalar objective from the homogenised stiffness tensor;
 2. derive or implement the corresponding gradient with respect to the stiffness components;
-3. replace the current UTI-related functions in [definition_3d.py](definition_3d.py);
+3. replace the current UTI-related functions in [definition_3d_UTI.py](definition_3d_UTI.py);
 4. keep the rest of the level-set update and homogenisation pipeline unchanged.
 
 ## 5. How to run
 
-The main entry point is [main_3d.py](main_3d.py). After installing the required dependencies (especially FEniCS), run the script to start the optimisation loop.
+The main entry point is [main_3d_UTI.py](main_3d_UTI.py). After installing the required dependencies (especially FEniCS), run the script to start the optimisation loop.
 
 ## 6. Summary
 
