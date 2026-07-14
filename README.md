@@ -8,9 +8,9 @@ This repository implements a 3D level-set based topology optimisation framework 
 
 The implementation is organised around three core files:
 
-- [main_3d.py](main_3d.py): the main optimisation loop and the outer update logic;
-- [definition_3d.py](definition_3d.py): PDE definitions, homogenisation, material modelling, and the cost function / gradient;
-- [init_3d.py](init_3d.py): numerical parameters, optimisation settings, and material / solver configuration.
+- [main_3d_UTI.py](main_3d_UTI.py): the main optimisation loop and the outer update logic;
+- [definition_3d_UTI.py](definition_3d_UTI.py): PDE definitions, homogenisation, material modelling, and the cost function / gradient;
+- [init_3d_UTI.py](init_3d_UTI.py): numerical parameters, optimisation settings, and material / solver configuration.
 
 ## 1. Overall algorithm framework
 
